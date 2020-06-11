@@ -1,0 +1,14 @@
+
+
+一阶:
+discriminator d(user, true-item1, true-item2, true-item3) = 1  d(user, false-item4, false-item5, false-item6)=0
+generator g(user, item7, item8, item9) 骗discriminator
+
+二阶: 比如user-item-user
+设计 item跟(user对) discriminator 0,1  generator 生成user逼近item 
+
+
+
+在generator和discriminator之间设置一个self-attention encoder, generator生成高质量的负例， 负例通过self-attention encoder生成一个表示r_f，正例通过self-attention encoder生成另一个表示 r_t，然后 discriminator判断 d(user, r_t) = 1, d(user, r_f)=0
+
+然后把高质量的正例 负例 放回原来graphsage模型里边去train
